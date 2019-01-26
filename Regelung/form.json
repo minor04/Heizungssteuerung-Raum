@@ -1,11 +1,9 @@
 {
 	"elements":
 	[
-		{ "type": "SelectVariable", "name": "TrigProgramm", "caption": "Programm" },
+		{ "type": "SelectVariable", "name": "TrigSollwert", "caption": "Sollwert" },
 		{ "type": "SelectVariable", "name": "RT", "caption": "Raumtemperatur" },
 		{ "type": "Label", "label": "Konfigurationsdaten für den Wetterdienst" },
-		{ "type": "IntervalBox", "name": "UpdateWeatherInterval", "caption": "Minutes" },
-		{ "type": "CheckBox", "name": "WetterForcast", "caption": "Forcast Aussentemperaturen in Regelmodul Anzeigen" }
 	],
 	"actions":
 	[
