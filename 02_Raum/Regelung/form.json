@@ -1,0 +1,22 @@
+{
+	"elements":
+	[
+		{ "type": "SelectVariable", "name": "TrigProgramm", "caption": "Programm" },
+		{ "type": "SelectVariable", "name": "TrigConfort", "caption": "ZP Confort" },
+		{ "type": "SelectVariable", "name": "TrigAbwesend", "caption": "Abwesend" },
+		{ "type": "Label", "label": "Konfigurationsdaten für den Wetterdienst" },
+		{ "type": "ValidationTextBox", "name": "APIkey", "caption": "API Key" },
+		{ "type": "ValidationTextBox", "name": "Lat", "caption": "Latitude" },
+		{ "type": "ValidationTextBox", "name": "Long", "caption": "Longitude" },
+		{ "type": "Label", "label": "Intervall zu Aktualisierung der Wetterdaten" },
+		{ "type": "IntervalBox", "name": "UpdateWeatherInterval", "caption": "Minutes" },
+		{ "type": "CheckBox", "name": "WetterForcast", "caption": "Forcast Aussentemperaturen in Regelmodul Anzeigen" }
+	],
+	"actions":
+	[
+		{ "type": "Button", "label": "ZP Anlegen", "onClick": "MIN_ZeitPro($id);" },
+		{ "type": "Button", "label": "Wetter", "onClick": "MIN_UpdateWeatherData($id);" },
+		{ "type": "Button", "label": "Test", "onClick": "MIN_Test($id);" },
+		
+	]
+}
