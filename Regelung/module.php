@@ -152,7 +152,7 @@ class HeizungssteuerungRaum extends IPSModule
 		//$SW = getValue($this->IPS_GetVariableIDByName("Sollwert", $InstanzID));
 		//getValue($this->IPS_GetVariableIDByName("Sollwert Berechnet", $InstanzID))
 			
-		SetValue($this->GetIDForIdent("SW_Ra"), $SW);
+		SetValue($this->GetIDForIdent("SW_Ra"), getValue($SW));
 		
 		//$this->EnableAction("SW_Abs");
 		
