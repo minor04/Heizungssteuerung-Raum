@@ -1,6 +1,5 @@
 <?
 
-$rt = 20;
 $sw_ra_anp = 0;
 
 class HeizungssteuerungRaum extends IPSModule
