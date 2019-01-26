@@ -8,7 +8,7 @@
 	"actions":
 	[
 
-		{ "type": "Button", "label": "Test", "onClick": "MIN_Test($id);" }
+		{ "type": "Button", "label": "Test", "onClick": "MIN_Test($id);" },
 		
 	]
 }
