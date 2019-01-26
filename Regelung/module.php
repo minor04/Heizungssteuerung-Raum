@@ -17,7 +17,7 @@ class HeizungssteuerungRaum extends IPSModule
 			$this->RegisterVariableFloat("SW_Ra", "Sollwert", "~Temperature.Room", 2);
 			$this->RegisterVariableFloat("SW_Anp", "Sollwert Anpassung", "~Temperature.Room", 3);
 			
-			$this->RegisterVariableFloat("Ventil", "Ventil", "~Switch", 10);
+			$this->RegisterVariableBoolean("Ventil", "Ventil", "~Switch", 10);
 
 			//___Modulvariabeln______________________________________________________________________
 			//$this->RegisterPropertyInteger("SWS", 1);
