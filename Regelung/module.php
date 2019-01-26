@@ -38,7 +38,7 @@ class HeizungssteuerungRaum extends IPSModule
 			
 				
             		$triggerIDSW = $this->ReadPropertyInteger("TrigSollwert");
-            		$this->RegisterMessage($triggerIDProg, 10603 /* VM_UPDATE */);
+            		$this->RegisterMessage($triggerIDSW, 10603 /* VM_UPDATE */);
 			
 			//$triggerIDConf = $this->ReadPropertyInteger("TrigConfort");
 			//$this->RegisterMessage($triggerIDConf, 10603 /* VM_UPDATE */);			
