@@ -50,7 +50,7 @@ class HeizungssteuerungRaum extends IPSModule
 	
 	        public function MessageSink ($TimeStamp, $SenderID, $Message, $Data) {
 		global $rt, $sw_ra, $sw_anp;
-            		$triggerIDSW = $this->ReadPropertyInteger("TrigProgramm");
+            		$triggerIDSW = $this->ReadPropertyInteger("TrigSollwert");
 			//$triggerIDConf = $this->ReadPropertyInteger("TrigConfort");
 	
 			if (($SenderID == $triggerIDSW) && ($Message == 10603)){// && (boolval($Data[0]))){
