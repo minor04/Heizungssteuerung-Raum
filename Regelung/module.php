@@ -1,8 +1,7 @@
 <?
 
 $rt = 20;
-$sw_ra = 22;
-$$sw_ra_anp = 0;
+$sw_ra_anp = 0;
 
 class HeizungssteuerungRaum extends IPSModule
 	{
