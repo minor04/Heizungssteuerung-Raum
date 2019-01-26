@@ -125,9 +125,11 @@ class HeizungssteuerungRegler extends IPSModule
 
 		else{
         	SetValue("SW_Ra", ($Sollwert_ber + $Sollwert_KOR_RA));					// Raumsollwert für Anzeige
+			
 	    		if($Programm <= 3 and (($Sollwert_ber + $Sollwert_KOR_RA + $Histerese_aus) <= $Ist_RT)){
 		    		SetValue("Ventil", false);
-	    	}
+	    		}
+		}
 
         	elseif(($Sollwert_ber + $Sollwert_KOR_RA + $Histerese_ein) >= $Ist_RT){
 			SetValue("Ventil", true);
