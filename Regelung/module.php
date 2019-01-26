@@ -1,5 +1,9 @@
 <?
-	
+
+$rt = 20;
+$sw_ra = 22;
+$sw_anp = 0;
+
 class HeizungssteuerungRegler extends IPSModule
 	{
 		
@@ -11,7 +15,9 @@ class HeizungssteuerungRegler extends IPSModule
 			//___In_IPS_zurverfügungstehende_Variabeln_______________________________________________
 			$this->RegisterVariableFloat("RT", "Raumtemperatur", "~Temperature.Room", 1);
 			$this->RegisterVariableFloat("SW_Ra", "Sollwert", "~Temperature.Room", 2);
-			$this->RegisterVariableFloat("SW_Anp", "Sollwert Anpassung", "Heizung_Abs", 3);
+			$this->RegisterVariableFloat("SW_Anp", "Sollwert Anpassung", "~Temperature.Room", 3);
+			
+			$this->RegisterVariableFloat("Ventil", "Ventil", "~Switch", 10);
 
 			//___Modulvariabeln______________________________________________________________________
 			//$this->RegisterPropertyInteger("SWS", 1);
@@ -30,15 +36,11 @@ class HeizungssteuerungRegler extends IPSModule
             		parent::ApplyChanges();
 			
 				
-            		$triggerIDProg = $this->ReadPropertyInteger("TrigProgramm");
+            		$triggerIDSW = $this->ReadPropertyInteger("TrigSollwert");
             		$this->RegisterMessage($triggerIDProg, 10603 /* VM_UPDATE */);
 			
-			$triggerIDConf = $this->ReadPropertyInteger("TrigConfort");
-			$this->RegisterMessage($triggerIDConf, 10603 /* VM_UPDATE */);
-			
-			$triggerIDAbw = $this->ReadPropertyInteger("TrigAbwesend");
-			$this->RegisterMessage($triggerIDAbw, 10603 /* VM_UPDATE */);
-			
+			//$triggerIDConf = $this->ReadPropertyInteger("TrigConfort");
+			//$this->RegisterMessage($triggerIDConf, 10603 /* VM_UPDATE */);			
 			
 			//Standartaktion Aktivieren
 			//$this->VariabelStandartaktion();
@@ -46,37 +48,17 @@ class HeizungssteuerungRegler extends IPSModule
         	}
 	
 	        public function MessageSink ($TimeStamp, $SenderID, $Message, $Data) {
-		global $sws, $zp_conf, $sws_abw, $abw, $prog, $sw, $sw_abs;
-            		$triggerIDProg = $this->ReadPropertyInteger("TrigProgramm");
-			$triggerIDConf = $this->ReadPropertyInteger("TrigConfort");
-			$triggerIDAbw = $this->ReadPropertyInteger("TrigAbwesend");
+		global $rt, $sw_ra, $sw_anp;
+            		$triggerIDSW = $this->ReadPropertyInteger("TrigProgramm");
+			//$triggerIDConf = $this->ReadPropertyInteger("TrigConfort");
 	
-			if (($SenderID == $triggerIDProg) && ($Message == 10603)){// && (boolval($Data[0]))){
-				$prog = getValue($this->GetIDForIdent("prog"));
-				$sw = getValue($this->GetIDForIdent("SW"));
-				$sw_abs = getValue($this->GetIDForIdent("SW_Abs"));
-				$this->SWRegler();
+			if (($SenderID == $triggerIDSW) && ($Message == 10603)){// && (boolval($Data[0]))){
+				$rt = getValue($this->GetIDForIdent("RT"));
+				$sw_ra = getValue($this->GetIDForIdent("SW_Ra"));
+				$sw_anp = getValue($this->GetIDForIdent("SW_Anp"));
+				$this->Regler();
            		}
-			if (($SenderID == $triggerIDConf) && ($Message == 10603)){// && (boolval($Data[0]))){
-				$sws = getValue($this->GetIDForIdent("SWS"));
-				$zp_conf = getValue($this->GetIDForIdent("ZP_Conf"));
-				$sws_abw = getValue($this->GetIDForIdent("SWS_Abw"));
-				$abw = getValue($this->GetIDForIdent("Abw"));
-				$this->ProgrammAuswahl();
-           		}
-			if (($SenderID == $triggerIDAbw) && ($Message == 10603)){// && (boolval($Data[0]))){
-				$sws = getValue($this->GetIDForIdent("SWS"));
-				$zp_conf = getValue($this->GetIDForIdent("ZP_Conf"));
-				$sws_abw = getValue($this->GetIDForIdent("SWS_Abw"));
-				$abw = getValue($this->GetIDForIdent("Abw"));
-				$this->ProgrammAuswahl();
-				if($abw == false){
-					//IPS_SetHidden($VariabelID_Ab, false);
-					//IPS_SetHidden($VariabelID_An, false);
-					$sws_abw = false;
-					$this->AbwesenheitsAuswahl();
-				}
-           		}
+	
         }
         /**
         * Die folgenden Funktionen stehen automatisch zur Verfügung, wenn das Modul über die "Module Control" eingefügt wurden.
@@ -87,43 +69,15 @@ class HeizungssteuerungRegler extends IPSModule
         */
 	
 	public function RequestAction($key, $value){
-		global $sws, $zp_conf, $sws_abw, $abw, $prog, $sw, $sw_abs, $sws_abw;
+		global $rt, $sw_ra, $sw_anp;
         	switch ($key) {
-        		case 'SWS':
+        		case 'SW_Anp':
+				$rt = getValue($this->GetIDForIdent("RT"));
+				$sw_ra = getValue($this->GetIDForIdent("SW_Ra"));
+				$sw_anp = $value;
 				$sws = $value;
-				$zp_conf = getValue($this->GetIDForIdent("ZP_Conf"));
-				$sws_abw = getValue($this->GetIDForIdent("SWS_Abw"));
-				$abw = getValue($this->GetIDForIdent("Abw"));
-				$this->ProgrammAuswahl();
+				$this->Regler();
             		break;
-				
-        		case 'prog':
-				$prog = $value;
-				$sw = getValue($this->GetIDForIdent("SW"));
-				$sw_abs = getValue($this->GetIDForIdent("SW_Abs"));
-				$this->SWRegler();
-			break;
-				
-        		case 'SW':
-				$prog = getValue($this->GetIDForIdent("prog"));
-				$sw = $value;
-				$sw_abs = getValue($this->GetIDForIdent("SW_Abs"));
-				$this->SWRegler();
-			break;
-				
-        		case 'SW_Abs':
-				$prog = getValue($this->GetIDForIdent("prog"));
-				$sw = getValue($this->GetIDForIdent("SW"));
-				$sw_abs = $value;
-				$this->SWRegler();
-			break;
-        		case 'SWS_Abw':
-				$sws = getValue($this->GetIDForIdent("SWS"));
-				$zp_conf = getValue($this->GetIDForIdent("ZP_Conf"));
-				$sws_abw = $value;
-				$abw = getValue($this->GetIDForIdent("Abw"));
-				$this->AbwesenheitsAuswahl();				
-			break;
         	}
 		
         $this->SetValue($key, $value);	
@@ -148,7 +102,7 @@ class HeizungssteuerungRegler extends IPSModule
 
 			
 		$Ist_RT = getValue("RT");
-		$Sollwert = getValue("SW");
+		$Sollwert_ber = getValue("SW");
 		$Sollwert_KOR_RA = getValue("SW_Ra");
 		$Programm = getValue("prog");
 
@@ -160,10 +114,10 @@ class HeizungssteuerungRegler extends IPSModule
 		if($Programm == 3){
 			SetValue("SW_Ra", 18);													// Raumsollwert für Anzeige
 			if((18 + $Histerese_aus) <= $Ist_RT){
-				//ZW_SwitchMode(48378, false);
+				SetValue("Ventil", false);
 			}
 			elseif((18 + $Histerese_ein) >= $Ist_RT){
-				//ZW_SwitchMode(48378, true);
+				SetValue("Ventil", true);
 			}
 		}
 
@@ -172,11 +126,11 @@ class HeizungssteuerungRegler extends IPSModule
 		else{
         	SetValue("SW_Ra", ($Sollwert_ber + $Sollwert_KOR_RA));					// Raumsollwert für Anzeige
 	    		if($Programm <= 3 and (($Sollwert_ber + $Sollwert_KOR_RA + $Histerese_aus) <= $Ist_RT)){
-		    		//ZW_SwitchMode(48378, false);
+		    		SetValue("Ventil", false);
 	    	}
 
         	elseif(($Sollwert_ber + $Sollwert_KOR_RA + $Histerese_ein) >= $Ist_RT){
-			//ZW_SwitchMode(48378, true);
+			SetValue("Ventil", true);
 	    	}
 		
 		//SetValue($this->GetIDForIdent("SW_ber"), $sollwert_ber);
