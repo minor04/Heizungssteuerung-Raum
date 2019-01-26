@@ -15,7 +15,7 @@ class HeizungssteuerungRaum extends IPSModule
 			//___In_IPS_zurverfügungstehende_Variabeln_______________________________________________
 			$this->RegisterVariableFloat("RT", "Raumtemperatur", "~Temperature.Room", 1);
 			$this->RegisterVariableFloat("SW_Ra", "Sollwert", "~Temperature.Room", 2);
-			$this->RegisterVariableFloat("SW_Anp", "Sollwert Anpassung", "~Temperature.Room", 3);
+			$this->RegisterVariableFloat("SW_Anp", "Sollwert Anpassung", "Heizung_Abs", 3);
 			
 			$this->RegisterVariableBoolean("Ventil", "Ventil", "~Switch", 10);
 
@@ -76,7 +76,6 @@ class HeizungssteuerungRaum extends IPSModule
 				$rt = getValue($this->GetIDForIdent("RT"));
 				$sw_ra = getValue($this->GetIDForIdent("SW_Ra"));
 				$sw_anp = $value;
-				$sws = $value;
 				$this->Regler();
             		break;
         	}
@@ -151,14 +150,14 @@ class HeizungssteuerungRaum extends IPSModule
 	public function Test(){
 		
 		
-		$KategorieID_Heizung = IPS_GetCategoryIDByName("Heizung", 0);
-		$KategorieID_Settings = IPS_GetCategoryIDByName("Einstellungen", $KategorieID_Heizung);
-		$InstanzID = IPS_GetInstanceIDByName("Regler", $KategorieID_Settings);
+		//$KategorieID_Heizung = IPS_GetCategoryIDByName("Heizung", 0);
+		//$KategorieID_Settings = IPS_GetCategoryIDByName("Einstellungen", $KategorieID_Heizung);
+		//$InstanzID = IPS_GetInstanceIDByName("Regler", $KategorieID_Settings);
 		
-		SetValue($this->GetIDForIdent("SW_Ra"), getValue(IPS_GetVariableIDByName("Sollwert Berechnet", $InstanzID)));
+		//SetValue($this->GetIDForIdent("SW_Ra"), getValue(IPS_GetVariableIDByName("Sollwert Berechnet", $InstanzID)));
 
 		
-		//$this->EnableAction("SW_Abs");
+		$this->EnableAction("SW_Anp");
 		
 		
 	}
