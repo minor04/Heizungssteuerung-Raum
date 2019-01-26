@@ -116,7 +116,7 @@ class HeizungssteuerungRegler extends IPSModule
 			if((18 + $Histerese_aus) <= $Ist_RT){
 				SetValue("Ventil", false);
 			}
-			elseif((18 + $Histerese_ein) >= $Ist_RT){
+			else if((18 + $Histerese_ein) >= $Ist_RT){
 				SetValue("Ventil", true);
 			}
 		}
@@ -129,11 +129,11 @@ class HeizungssteuerungRegler extends IPSModule
 	    		if($Programm <= 3 and (($Sollwert_ber + $Sollwert_KOR_RA + $Histerese_aus) <= $Ist_RT)){
 		    		SetValue("Ventil", false);
 	    		}
+		
+        		else if(($Sollwert_ber + $Sollwert_KOR_RA + $Histerese_ein) >= $Ist_RT){
+				SetValue("Ventil", true);
+	    		}
 		}
-
-        	elseif(($Sollwert_ber + $Sollwert_KOR_RA + $Histerese_ein) >= $Ist_RT){
-			SetValue("Ventil", true);
-	    	}
 		
 		//SetValue($this->GetIDForIdent("SW_ber"), $sollwert_ber);
          
