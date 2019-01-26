@@ -20,6 +20,7 @@ class HeizungssteuerungRaum extends IPSModule
 
 			//___Modulvariabeln______________________________________________________________________
 			$this->RegisterPropertyInteger("TrigSollwert", 0);
+			$this->RegisterPropertyFloat("TrigRaumtemp", 0);
 			//$this->RegisterPropertyInteger("SWS", 1);
 			//$this->RegisterPropertyBoolean("ZP_Conf", true);
 			
