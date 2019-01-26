@@ -54,9 +54,9 @@ class HeizungssteuerungRaum extends IPSModule
 			//$triggerIDConf = $this->ReadPropertyInteger("TrigConfort");
 	
 			if (($SenderID == $triggerIDSW) && ($Message == 10603)){// && (boolval($Data[0]))){
-				//$rt = getValue($this->GetIDForIdent("RT"));
+				$rt = getValue($this->GetIDForIdent("RT"));
 				$sw_ra = getValue($this->GetIDForIdent("SW_Ra"));
-				//$sw_anp = getValue($this->GetIDForIdent("SW_Anp"));
+				$sw_anp = getValue($this->GetIDForIdent("SW_Anp"));
 				$this->Regler();
            		}
 	
@@ -73,9 +73,9 @@ class HeizungssteuerungRaum extends IPSModule
 		global $rt, $sw_ra, $sw_anp;
         	switch ($key) {
         		case 'SW_Anp':
-				$rt = getValue($this->GetIDForIdent("RT"));
+				//$rt = getValue($this->GetIDForIdent("RT"));
 				$sw_ra = getValue($this->GetIDForIdent("SW_Ra"));
-				$sw_anp = $value;
+				//$sw_anp = $value;
 				$this->Regler();
             		break;
         	}
