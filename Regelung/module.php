@@ -105,11 +105,11 @@ class HeizungssteuerungRaum extends IPSModule
 		$KategorieID_Settings = IPS_GetCategoryIDByName("Einstellungen", $KategorieID_Heizung);
 		$InstanzID = IPS_GetInstanceIDByName("Regler", $KategorieID_Settings);
 		
-		SetValue($this->GetIDForIdent("SW_Ra"), getValue(IPS_GetVariableIDByName("Sollwert Berechnet", $InstanzID)));
+		
 
 			
 		$Ist_RT =  getValue($this->GetIDForIdent("RT"));
-		$sw_regler =  getValue($this->GetIDForIdent("SW"));
+		$sw_regler =  getValue(IPS_GetVariableIDByName("Sollwert Berechnet", $InstanzID));
 		$sw_ra =  getValue($this->GetIDForIdent("SW_Ra"));
 		$sw_ra_anp =  getValue($this->GetIDForIdent("SW_Anp"));
 		$Programm =  getValue($this->GetIDForIdent("prog"));
