@@ -1,11 +1,11 @@
 {
-    "id": "{05d1f922-21c6-4107-b8ee-ad2dea73c788}",
-    "name": "HeizungssteuerungRegler",
+    "id": "{5fa04a8c-e68f-41de-bd03-c96364fc6545}",
+    "name": "HeizungssteuerungRaum",
     "type": 3,
     "vendor": "",
     "aliases": 
     [
-    "Regler"
+    "Raum"
     ],
     "parentRequirements": [],
     "childRequirements": [],
