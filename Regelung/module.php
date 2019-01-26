@@ -2,7 +2,7 @@
 
 $rt = 20;
 $sw_ra = 22;
-$sw_anp = 0;
+$$sw_ra_anp = 0;
 
 class HeizungssteuerungRaum extends IPSModule
 	{
@@ -75,7 +75,7 @@ class HeizungssteuerungRaum extends IPSModule
         		case 'SW_Anp':
 				//$rt = getValue($this->GetIDForIdent("RT"));
 				//$sw_ra = getValue($this->GetIDForIdent("SW_Ra"));
-				$sw_anp = $value;
+				$sw_ra_anp = $value;
 				$this->Regler();
             		break;
         	}
