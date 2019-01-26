@@ -34,7 +34,7 @@ class HeizungssteuerungRaum extends IPSModule
             		$triggerIDSW = $this->ReadPropertyInteger("TrigSollwert");
             		$this->RegisterMessage($triggerIDSW, 10603 /* VM_UPDATE */);
 			
-			$triggerIDRT = $this->ReadPropertyInteger("TrigRaumtemp");
+			$triggerIDRT = $this->ReadPropertyFloat("TrigRaumtemp");
 			$this->RegisterMessage($triggerIDRT, 10603 /* VM_UPDATE */);			
 			
 			//Standartaktion Aktivieren
@@ -45,7 +45,7 @@ class HeizungssteuerungRaum extends IPSModule
 	        public function MessageSink ($TimeStamp, $SenderID, $Message, $Data) {
 		global $rt, $sw_ra, $sw_ra_anp;
             		$triggerIDSW = $this->ReadPropertyInteger("TrigSollwert");
-			$triggerIDRT = $this->ReadPropertyInteger("TrigRaumtemp");
+			$triggerIDRT = $this->ReadPropertyFloat("TrigRaumtemp");
 	
 			if (($SenderID == $triggerIDSW) && ($Message == 10603)){// && (boolval($Data[0]))){
 				//$rt = getValue($this->GetIDForIdent("RT"));
