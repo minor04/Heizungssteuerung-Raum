@@ -109,9 +109,9 @@ class HeizungssteuerungRaum extends IPSModule
 
 			
 		$Ist_RT = getValue("RT");
-		$sollwert_regler = getValue("SW");
-		$sollwert_raum_kor = getValue("SW_Ra");
-		$sollwert_raum = getValue("SW_Ra");
+		$sw_regler = getValue("SW");
+		$sw_ra = getValue("SW_Ra");
+		$sw_ra_anp = getValue("SW_Anp");
 		$Programm = getValue("prog");
 
 		$Histerese_aus = -0.0; // Histerese um bei 0.0K vor Sollwert den Stellantrieb zu schliessen (Stand 09.12.18)
@@ -120,7 +120,7 @@ class HeizungssteuerungRaum extends IPSModule
 		//___Regelung_Abwesend____________________________________________________________________________________________________________
 
 		if($Programm == 3){
-			SetValue("SW_Ra", 18);													// Raumsollwert für Anzeige
+			SetValue($this->GetIDForIdent("SW_Ra"), 18);													// Raumsollwert für Anzeige
 			if((18 + $Histerese_aus) <= $Ist_RT){
 				SetValue($this->GetIDForIdent("Ventil"), false);
 			}
@@ -132,13 +132,13 @@ class HeizungssteuerungRaum extends IPSModule
 		//___Regelung_Normalzustand_______________________________________________________________________________________________________
 
 		else{
-        	SetValue($this->GetIDForIdent("SW_Ra"), ($sollwert_regler + $sollwert_raum_kor));					// Raumsollwert für Anzeige
+        	SetValue($this->GetIDForIdent("SW_Ra"), ($sw_regler + $sw_ra_anp));					// Raumsollwert für Anzeige
 			
-	    		if($Programm <= 3 and (($Sollwert_ber + $Sollwert_KOR_RA + $Histerese_aus) <= $Ist_RT)){
+	    		if($Programm <= 3 and (($sw_regler + $sw_ra_anp + $Histerese_aus) <= $Ist_RT)){
 		    		SetValue($this->GetIDForIdent("Ventil"), false);
 	    		}
 		
-        		else if(($Sollwert_ber + $Sollwert_KOR_RA + $Histerese_ein) >= $Ist_RT){
+        		else if(($sw_regler + $sw_ra_anp + $Histerese_ein) >= $Ist_RT){
 				SetValue($this->GetIDForIdent("Ventil"), true);
 	    		}
 		}
