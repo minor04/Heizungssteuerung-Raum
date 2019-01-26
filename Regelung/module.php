@@ -52,7 +52,7 @@ class HeizungssteuerungRaum extends IPSModule
 				$sw_ra_anp = getValue($this->GetIDForIdent("SW_Anp"));
 				$this->Regler();
            		}
-			if (($SenderID == $$triggerIDRT) && ($Message == 10603)){// && (boolval($Data[0]))){
+			if (($SenderID == $triggerIDRT) && ($Message == 10603)){// && (boolval($Data[0]))){
 				//$rt = getValue($this->GetIDForIdent("RT"));
 				//$sw_ra = getValue($this->GetIDForIdent("SW_Ra"));
 				$sw_ra_anp = getValue($this->GetIDForIdent("SW_Anp"));
