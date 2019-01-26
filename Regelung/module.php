@@ -22,12 +22,6 @@ class HeizungssteuerungRaum extends IPSModule
 			$this->RegisterPropertyInteger("TrigSollwert", 0);
 			//$this->RegisterPropertyInteger("SWS", 1);
 			//$this->RegisterPropertyBoolean("ZP_Conf", true);
-			//$this->RegisterPropertyInteger("Test", 0);
-			//$this->RegisterPropertyInteger("prog", 1);
-			//$this->RegisterPropertyFloat("SW", 15);
-			//$this->RegisterPropertyFloat("SW_Abs", 3);
-			
-			//$this->RegisterPropertyBoolean("Abw", true);
 			
 		}
 	
@@ -39,8 +33,8 @@ class HeizungssteuerungRaum extends IPSModule
             		$triggerIDSW = $this->ReadPropertyInteger("TrigSollwert");
             		$this->RegisterMessage($triggerIDSW, 10603 /* VM_UPDATE */);
 			
-			//$triggerIDConf = $this->ReadPropertyInteger("TrigConfort");
-			//$this->RegisterMessage($triggerIDConf, 10603 /* VM_UPDATE */);			
+			$triggerIDRT = $this->ReadPropertyInteger("TrigRaumtemp");
+			$this->RegisterMessage($triggerIDRT, 10603 /* VM_UPDATE */);			
 			
 			//Standartaktion Aktivieren
 			//$this->VariabelStandartaktion();
@@ -48,14 +42,20 @@ class HeizungssteuerungRaum extends IPSModule
         	}
 	
 	        public function MessageSink ($TimeStamp, $SenderID, $Message, $Data) {
-		global $rt, $sw_ra, $sw_anp;
+		global $rt, $sw_ra, $sw_ra_anp;
             		$triggerIDSW = $this->ReadPropertyInteger("TrigSollwert");
-			//$triggerIDConf = $this->ReadPropertyInteger("TrigConfort");
+			$triggerIDRT = $this->ReadPropertyInteger("TrigRaumtemp");
 	
 			if (($SenderID == $triggerIDSW) && ($Message == 10603)){// && (boolval($Data[0]))){
-				$rt = getValue($this->GetIDForIdent("RT"));
+				//$rt = getValue($this->GetIDForIdent("RT"));
 				//$sw_ra = getValue($this->GetIDForIdent("SW_Ra"));
-				$sw_anp = getValue($this->GetIDForIdent("SW_Anp"));
+				$sw_ra_anp = getValue($this->GetIDForIdent("SW_Anp"));
+				$this->Regler();
+           		}
+			if (($SenderID == $$triggerIDRT) && ($Message == 10603)){// && (boolval($Data[0]))){
+				//$rt = getValue($this->GetIDForIdent("RT"));
+				//$sw_ra = getValue($this->GetIDForIdent("SW_Ra"));
+				$sw_ra_anp = getValue($this->GetIDForIdent("SW_Anp"));
 				$this->Regler();
            		}
 	
