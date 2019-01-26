@@ -4,7 +4,7 @@ $rt = 20;
 $sw_ra = 22;
 $sw_anp = 0;
 
-class HeizungssteuerungRegler extends IPSModule
+class HeizungssteuerungRaum extends IPSModule
 	{
 		
 		public function Create()
