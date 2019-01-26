@@ -54,9 +54,9 @@ class HeizungssteuerungRaum extends IPSModule
 			//$triggerIDConf = $this->ReadPropertyInteger("TrigConfort");
 	
 			if (($SenderID == $triggerIDSW) && ($Message == 10603)){// && (boolval($Data[0]))){
-				$rt = getValue($this->GetIDForIdent("RT"));
+				//$rt = getValue($this->GetIDForIdent("RT"));
 				$sw_ra = getValue($this->GetIDForIdent("SW_Ra"));
-				$sw_anp = getValue($this->GetIDForIdent("SW_Anp"));
+				//$sw_anp = getValue($this->GetIDForIdent("SW_Anp"));
 				$this->Regler();
            		}
 	
@@ -98,18 +98,16 @@ class HeizungssteuerungRaum extends IPSModule
 	}
 	
 	public function Regler(){
-		//global $prog, $sw, $sw_abs;
+		global $sw_ra;
 		
 		$KategorieID_Heizung = IPS_GetCategoryIDByName("Heizung", 0);
 		$KategorieID_Settings = IPS_GetCategoryIDByName("Einstellungen", $KategorieID_Heizung);
 		$InstanzID = IPS_GetInstanceIDByName("Regler", $KategorieID_Settings);
 		
 		
-
-			
 		$Ist_RT =  getValue($this->GetIDForIdent("RT"));
 		$sw_regler =  getValue(IPS_GetVariableIDByName("Sollwert Berechnet", $InstanzID));
-		$sw_ra =  getValue($this->GetIDForIdent("SW_Ra"));
+		//$sw_ra =  getValue($this->GetIDForIdent("SW_Ra"));
 		$sw_ra_anp =  getValue($this->GetIDForIdent("SW_Anp"));
 		$programm =  getValue(IPS_GetVariableIDByName("Programm", $InstanzID));
 
@@ -133,7 +131,7 @@ class HeizungssteuerungRaum extends IPSModule
 		else{
         	SetValue($this->GetIDForIdent("SW_Ra"), ($sw_regler + $sw_ra_anp));					// Raumsollwert für Anzeige
 			
-	    		if($Programm <= 3 and (($sw_regler + $sw_ra_anp + $Histerese_aus) <= $Ist_RT)){
+	    		if($programm <= 3 and (($sw_regler + $sw_ra_anp + $Histerese_aus) <= $Ist_RT)){
 		    		SetValue($this->GetIDForIdent("Ventil"), false);
 	    		}
 		
