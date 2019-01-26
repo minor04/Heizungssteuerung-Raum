@@ -57,7 +57,7 @@ class HeizungssteuerungRaum extends IPSModule
 				$rt = getValue($this->GetIDForIdent("RT"));
 				$sw_ra = getValue($this->GetIDForIdent("SW_Ra"));
 				$sw_anp = getValue($this->GetIDForIdent("SW_Anp"));
-				$this->Regler();
+				$this->Test();
            		}
 	
         }
@@ -149,10 +149,7 @@ class HeizungssteuerungRaum extends IPSModule
 		$InstanzID = IPS_GetInstanceIDByName("Regler", $KategorieID_Settings);
 		
 		SetValue($this->GetIDForIdent("SW_Ra"), getValue(IPS_GetVariableIDByName("Sollwert Berechnet", $InstanzID)));
-		//$SW = IPS_GetVariableIDByName("Sollwert", $InstanzID);
-		//getValue($this->IPS_GetVariableIDByName("Sollwert Berechnet", $InstanzID))
-			
-		//SetValue($this->GetIDForIdent("SW_Ra"), getValue($SW));
+
 		
 		//$this->EnableAction("SW_Abs");
 		
