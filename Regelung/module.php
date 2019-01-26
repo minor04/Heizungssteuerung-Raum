@@ -143,7 +143,9 @@ class HeizungssteuerungRaum extends IPSModule
 		
 	public function Test(){
 		
-		$this->EnableAction("SW_Abs");
+		SetValue("SW_Ra", getValue($this->GetIDForIdent("SW")));
+		
+		//$this->EnableAction("SW_Abs");
 		
 		
 	}
