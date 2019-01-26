@@ -69,7 +69,7 @@ class HeizungssteuerungRaum extends IPSModule
         */
 	
 	public function RequestAction($key, $value){
-		global $rt, $sw_ra, $sw_anp;
+		global $sw_ra_anp;
         	switch ($key) {
         		case 'SW_Anp':
 				//$rt = getValue($this->GetIDForIdent("RT"));
