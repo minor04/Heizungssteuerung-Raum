@@ -112,14 +112,14 @@ class HeizungssteuerungRaum extends IPSModule
 		$sw_regler =  getValue(IPS_GetVariableIDByName("Sollwert Berechnet", $InstanzID));
 		$sw_ra =  getValue($this->GetIDForIdent("SW_Ra"));
 		$sw_ra_anp =  getValue($this->GetIDForIdent("SW_Anp"));
-		$Programm =  getValue($this->GetIDForIdent("prog"));
+		$programm =  getValue(IPS_GetVariableIDByName("Programm", $InstanzID));
 
 		$Histerese_aus = -0.0; // Histerese um bei 0.0K vor Sollwert den Stellantrieb zu schliessen (Stand 09.12.18)
 		$Histerese_ein = -0.5; // Histerese um bei 0.5K vor Sollwert den Stellantrieb zu öffnen (Stand 09.12.18)
 
 		//___Regelung_Abwesend____________________________________________________________________________________________________________
 
-		if($Programm == 3){
+		if($programm == 3){
 			SetValue($this->GetIDForIdent("SW_Ra"), 18);													// Raumsollwert für Anzeige
 			if((18 + $Histerese_aus) <= $Ist_RT){
 				SetValue($this->GetIDForIdent("Ventil"), false);
