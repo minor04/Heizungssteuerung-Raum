@@ -55,7 +55,7 @@ class HeizungssteuerungRaum extends IPSModule
 	
 			if (($SenderID == $triggerIDSW) && ($Message == 10603)){// && (boolval($Data[0]))){
 				$rt = getValue($this->GetIDForIdent("RT"));
-				$sw_ra = getValue($this->GetIDForIdent("SW_Ra"));
+				//$sw_ra = getValue($this->GetIDForIdent("SW_Ra"));
 				$sw_anp = getValue($this->GetIDForIdent("SW_Anp"));
 				$this->Regler();
            		}
@@ -74,8 +74,8 @@ class HeizungssteuerungRaum extends IPSModule
         	switch ($key) {
         		case 'SW_Anp':
 				//$rt = getValue($this->GetIDForIdent("RT"));
-				$sw_ra = getValue($this->GetIDForIdent("SW_Ra"));
-				//$sw_anp = $value;
+				//$sw_ra = getValue($this->GetIDForIdent("SW_Ra"));
+				$sw_anp = $value;
 				$this->Regler();
             		break;
         	}
@@ -98,7 +98,7 @@ class HeizungssteuerungRaum extends IPSModule
 	}
 	
 	public function Regler(){
-		global $sw_ra;
+		global $sw_ra_anp;
 		
 		$KategorieID_Heizung = IPS_GetCategoryIDByName("Heizung", 0);
 		$KategorieID_Settings = IPS_GetCategoryIDByName("Einstellungen", $KategorieID_Heizung);
@@ -108,7 +108,7 @@ class HeizungssteuerungRaum extends IPSModule
 		$Ist_RT =  getValue($this->GetIDForIdent("RT"));
 		$sw_regler =  getValue(IPS_GetVariableIDByName("Sollwert Berechnet", $InstanzID));
 		//$sw_ra =  getValue($this->GetIDForIdent("SW_Ra"));
-		$sw_ra_anp =  getValue($this->GetIDForIdent("SW_Anp"));
+		//$sw_ra_anp =  getValue($this->GetIDForIdent("SW_Anp"));
 		$programm =  getValue(IPS_GetVariableIDByName("Programm", $InstanzID));
 
 		$Histerese_aus = -0.0; // Histerese um bei 0.0K vor Sollwert den Stellantrieb zu schliessen (Stand 09.12.18)
