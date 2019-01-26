@@ -100,11 +100,18 @@ class HeizungssteuerungRaum extends IPSModule
 	
 	public function Regler(){
 		//global $prog, $sw, $sw_abs;
+		
+		$KategorieID_Heizung = IPS_GetCategoryIDByName("Heizung", 0);
+		$KategorieID_Settings = IPS_GetCategoryIDByName("Einstellungen", $KategorieID_Heizung);
+		$InstanzID = IPS_GetInstanceIDByName("Regler", $KategorieID_Settings);
+		
+		SetValue($this->GetIDForIdent("SW_Ra"), getValue(IPS_GetVariableIDByName("Sollwert Berechnet", $InstanzID)));
 
 			
 		$Ist_RT = getValue("RT");
-		$Sollwert_ber = getValue("SW");
-		$Sollwert_KOR_RA = getValue("SW_Ra");
+		$sollwert_regler = getValue("SW");
+		$sollwert_raum_kor = getValue("SW_Ra");
+		$sollwert_raum = getValue("SW_Ra");
 		$Programm = getValue("prog");
 
 		$Histerese_aus = -0.0; // Histerese um bei 0.0K vor Sollwert den Stellantrieb zu schliessen (Stand 09.12.18)
@@ -115,24 +122,24 @@ class HeizungssteuerungRaum extends IPSModule
 		if($Programm == 3){
 			SetValue("SW_Ra", 18);													// Raumsollwert für Anzeige
 			if((18 + $Histerese_aus) <= $Ist_RT){
-				SetValue("Ventil", false);
+				SetValue($this->GetIDForIdent("Ventil"), false);
 			}
 			else if((18 + $Histerese_ein) >= $Ist_RT){
-				SetValue("Ventil", true);
+				SetValue($this->GetIDForIdent("Ventil"), true);
 			}
 		}
 
 		//___Regelung_Normalzustand_______________________________________________________________________________________________________
 
 		else{
-        	SetValue("SW_Ra", ($Sollwert_ber + $Sollwert_KOR_RA));					// Raumsollwert für Anzeige
+        	SetValue($this->GetIDForIdent("SW_Ra"), ($sollwert_regler + $sollwert_raum_kor));					// Raumsollwert für Anzeige
 			
 	    		if($Programm <= 3 and (($Sollwert_ber + $Sollwert_KOR_RA + $Histerese_aus) <= $Ist_RT)){
-		    		SetValue("Ventil", false);
+		    		SetValue($this->GetIDForIdent("Ventil"), false);
 	    		}
 		
         		else if(($Sollwert_ber + $Sollwert_KOR_RA + $Histerese_ein) >= $Ist_RT){
-				SetValue("Ventil", true);
+				SetValue($this->GetIDForIdent("Ventil"), true);
 	    		}
 		}
 		
