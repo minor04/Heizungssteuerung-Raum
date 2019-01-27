@@ -3,7 +3,7 @@
 	[
 		{ "type": "SelectVariable", "name": "TrigSollwert", "caption": "Sollwert" },
 		{ "type": "SelectVariable", "name": "TrigRaumtemp", "caption": "Raumtemperatur" },
-		{ "type": "Label", "label": "Konfigurationsdaten für den Wetterdienst" },
+		{ "type": "Label", "label": "Ventilantrieb (mind eine Variable muss gesetzt sein)" },
 		{ "type": "SelectVariable", "name": "V_An_01", "caption": "Ventil 01" },
 		{ "type": "SelectVariable", "name": "V_An_02", "caption": "Ventil 02" },
 		{ "type": "SelectVariable", "name": "V_An_03", "caption": "Ventil 03" }
@@ -12,6 +12,7 @@
 	"actions":
 	[
 
+		{ "type": "Button", "label": "Trend", "onClick": "MIN_Test($id);" },
 		{ "type": "Button", "label": "Test", "onClick": "MIN_Test($id);" },
 		
 	]
