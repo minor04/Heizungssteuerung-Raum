@@ -109,9 +109,11 @@ class HeizungssteuerungRaum extends IPSModule
 			SetValue($this->GetIDForIdent("SW_Ra"), 18);													// Raumsollwert für Anzeige
 			if((18 + $Histerese_aus) <= $rt){
 				SetValue($this->GetIDForIdent("Ventil"), false);
+				SetValue($this->GetIDForIdent("V_An_01"), false);
 			}
 			else if((18 + $Histerese_ein) >= $rt){
 				SetValue($this->GetIDForIdent("Ventil"), true);
+				SetValue($this->GetIDForIdent("V_An_01"), true);
 			}
 		}
 
@@ -122,10 +124,12 @@ class HeizungssteuerungRaum extends IPSModule
 			
 	    		if($programm <= 3 and (($sw_regler + $sw_ra_anp + $Histerese_aus) <= $rt)){
 		    		SetValue($this->GetIDForIdent("Ventil"), false);
+				SetValue($this->GetIDForIdent("V_An_01"), false);
 	    		}
 		
         		else if(($sw_regler + $sw_ra_anp + $Histerese_ein) >= $rt){
 				SetValue($this->GetIDForIdent("Ventil"), true);
+				SetValue($this->GetIDForIdent("V_An_01"), true);
 	    		}
 		}
 		
