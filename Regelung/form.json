@@ -2,7 +2,7 @@
 	"elements":
 	[
 		{ "type": "SelectVariable", "name": "TrigSollwert", "caption": "Sollwert" },
-		{ "type": "SelectVariable", "name": "RATemp", "caption": "Raumtemperatur" },
+		{ "type": "SelectVariable", "name": "RT", "caption": "Raumtemperatur" },
 		{ "type": "Label", "label": "Konfigurationsdaten für den Wetterdienst" },
 		
 	{
