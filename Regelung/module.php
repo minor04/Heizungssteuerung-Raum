@@ -84,14 +84,7 @@ class HeizungssteuerungRaum extends IPSModule
 	}
 		
 	public function TrendDiagramm(){
-		
-		$MediaID = IPS_CreateMedia(4);                  		// Image im MedienPool anlegen
-		//IPS_SetMediaFile($MediaID, $ImageFile, true);   		// Image im MedienPool mit Image-Datei verbinden
-		IPS_SetName($MediaID, "Trenddiagramm");                		// Medienobjekt benennen
-		//IPS_SetParent($MediaID, 12345);
-		
-	
-			
+					
 	}
 	
 	public function Regler(){
@@ -152,11 +145,7 @@ class HeizungssteuerungRaum extends IPSModule
 	
 		
 	public function Test(){
-		$ImageFile = "C:\\Bilder\\Wüste.png";     	// Image-Datei
-		$MediaID = IPS_CreateMedia(1);                  // Image im MedienPool anlegen
-		IPS_SetMediaFile($MediaID, $ImageFile, true);   // Image im MedienPool mit Image-Datei verbinden
-		IPS_SetName($MediaID, "Alarm");                 // Medienobjekt benennen
-		IPS_SetParent($MediaID, 12345);   
+ 
 		
 		//$KategorieID_Heizung = IPS_GetCategoryIDByName("Heizung", 0);
 		//$KategorieID_Settings = IPS_GetCategoryIDByName("Einstellungen", $KategorieID_Heizung);
