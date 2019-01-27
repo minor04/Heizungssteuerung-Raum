@@ -37,7 +37,7 @@ class HeizungssteuerungRaum extends IPSModule
 			$this->RegisterMessage($triggerIDRT, 10603 /* VM_UPDATE */);
 					
 			//Standartaktion Aktivieren
-			//$this->VariabelStandartaktion();
+			$this->VariabelStandartaktion();
 			
         	}
 	
@@ -83,9 +83,7 @@ class HeizungssteuerungRaum extends IPSModule
 	
 	
 	public function VariabelStandartaktion(){
-		
-		//$this->EnableAction("SWS");
-		
+		$this->EnableAction("SWS");
 	}
 		
 	public function TrendDiagramm(){
