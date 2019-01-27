@@ -20,9 +20,6 @@ class HeizungssteuerungRaum extends IPSModule
 			//___Modulvariabeln______________________________________________________________________
 			$this->RegisterPropertyInteger("TrigSollwert", 0);
 			$this->RegisterPropertyInteger("TrigRaumtemp", 0);
-			//$this->RegisterPropertyInteger("SWS", 1);
-			//$this->RegisterPropertyBoolean("ZP_Conf", true);
-			
 		}
 	
 	        public function ApplyChanges() {
@@ -47,14 +44,10 @@ class HeizungssteuerungRaum extends IPSModule
 			$triggerIDRT = $this->ReadPropertyInteger("TrigRaumtemp");
 	
 			if (($SenderID == $triggerIDSW) && ($Message == 10603)){// && (boolval($Data[0]))){
-				//$rt = getValue($this->GetIDForIdent("RT"));
-				//$sw_ra = getValue($this->GetIDForIdent("SW_Ra"));
 				$sw_ra_anp = getValue($this->GetIDForIdent("SW_Anp"));
 				$this->Regler();
            		}
 			if (($SenderID == $triggerIDRT) && ($Message == 10603)){// && (boolval($Data[0]))){
-				//$rt = getValue($this->GetIDForIdent("RT"));
-				//$sw_ra = getValue($this->GetIDForIdent("SW_Ra"));
 				$sw_ra_anp = getValue($this->GetIDForIdent("SW_Anp"));
 				$this->Regler();
            		}
