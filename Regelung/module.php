@@ -153,7 +153,7 @@ class HeizungssteuerungRaum extends IPSModule
 		
 	public function Test(){
 		
-		IPS_CreateMedia (4);
+		IPS_CreateMedia (1);
 		
 		//$KategorieID_Heizung = IPS_GetCategoryIDByName("Heizung", 0);
 		//$KategorieID_Settings = IPS_GetCategoryIDByName("Einstellungen", $KategorieID_Heizung);
