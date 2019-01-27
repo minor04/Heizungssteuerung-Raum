@@ -110,10 +110,14 @@ class HeizungssteuerungRaum extends IPSModule
 			if((18 + $Histerese_aus) <= $rt){
 				SetValue($this->GetIDForIdent("Ventil"), false);
 				SetValue($this->ReadPropertyInteger("V_An_01"), false);
+				SetValue($this->ReadPropertyInteger("V_An_02"), false);
+				SetValue($this->ReadPropertyInteger("V_An_03"), false);
 			}
 			else if((18 + $Histerese_ein) >= $rt){
 				SetValue($this->GetIDForIdent("Ventil"), true);
 				SetValue($this->ReadPropertyInteger("V_An_01"), true);
+				SetValue($this->ReadPropertyInteger("V_An_02"), true);
+				SetValue($this->ReadPropertyInteger("V_An_03"), true);
 			}
 		}
 
@@ -125,11 +129,15 @@ class HeizungssteuerungRaum extends IPSModule
 	    		if($programm <= 3 and (($sw_regler + $sw_ra_anp + $Histerese_aus) <= $rt)){
 		    		SetValue($this->GetIDForIdent("Ventil"), false);
 				SetValue($this->ReadPropertyInteger("V_An_01"), false);
+				SetValue($this->ReadPropertyInteger("V_An_02"), false);
+				SetValue($this->ReadPropertyInteger("V_An_03"), false);
 	    		}
 		
         		else if(($sw_regler + $sw_ra_anp + $Histerese_ein) >= $rt){
 				SetValue($this->GetIDForIdent("Ventil"), true);
 				SetValue($this->ReadPropertyInteger("V_An_01"), true);
+				SetValue($this->ReadPropertyInteger("V_An_02"), true);
+				SetValue($this->ReadPropertyInteger("V_An_03"), true);
 	    		}
 		}
 		
