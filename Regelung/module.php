@@ -20,6 +20,10 @@ class HeizungssteuerungRaum extends IPSModule
 			//___Modulvariabeln______________________________________________________________________
 			$this->RegisterPropertyInteger("TrigSollwert", 0);
 			$this->RegisterPropertyInteger("TrigRaumtemp", 0);
+			
+			$this->RegisterPropertyBoolean("V_An_01", true);
+			$this->RegisterPropertyBoolean("V_An_02", true);
+			$this->RegisterPropertyBoolean("V_An_03", true);
 		}
 	
 	        public function ApplyChanges() {
