@@ -3,20 +3,7 @@
 	[
 		{ "type": "SelectVariable", "name": "TrigSollwert", "caption": "Sollwert" },
 		{ "type": "SelectVariable", "name": "TrigRaumtemp", "caption": "Raumtemperatur" },
-		{ "type": "Label", "label": "Konfigurationsdaten für den Wetterdienst" },
-		
-	{
-      		"type": "List",
-      		"name": "Variables",
-      		"caption": "Variables",
-      		"rowCount": 10,
-      		"add": true,
-      		"delete": true,
-     		"sort": {
-        		"column": "Name",
-        		"direction": "ascending"
-			}
-      	}
+		{ "type": "Label", "label": "Konfigurationsdaten für den Wetterdienst" }
 		
 	],
 	"actions":
