@@ -85,6 +85,11 @@ class HeizungssteuerungRaum extends IPSModule
 		
 	public function TrendDiagramm(){
 		
+		$MediaID = IPS_CreateMedia(4);                  		// Image im MedienPool anlegen
+		//IPS_SetMediaFile($MediaID, $ImageFile, true);   		// Image im MedienPool mit Image-Datei verbinden
+		IPS_SetName($MediaID, "Trenddiagramm");                		// Medienobjekt benennen
+		//IPS_SetParent($MediaID, 12345);
+		
 	
 			
 	}
