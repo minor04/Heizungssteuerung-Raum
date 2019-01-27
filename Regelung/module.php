@@ -127,8 +127,12 @@ class HeizungssteuerungRaum extends IPSModule
 	    		if($programm <= 3 and (($sw_regler + $sw_ra_anp + $Histerese_aus) <= $rt)){
 		    		SetValue($this->GetIDForIdent("Ventil"), false);
 				SetValue($this->ReadPropertyInteger("V_An_01"), false);
-				SetValue($this->ReadPropertyInteger("V_An_02"), false);
-				SetValue($this->ReadPropertyInteger("V_An_03"), false);
+				if (IPS_VariableExists($this->ReadPropertyInteger("V_An_02"))) {
+					SetValue($this->ReadPropertyInteger("V_An_02"), false);
+				}
+				if (IPS_VariableExists($this->ReadPropertyInteger("V_An_03"))) {
+					SetValue($this->ReadPropertyInteger("V_An_03"), false);
+				}
 	    		}
 		
         		else if(($sw_regler + $sw_ra_anp + $Histerese_ein) >= $rt){
