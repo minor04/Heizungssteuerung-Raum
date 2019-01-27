@@ -83,7 +83,7 @@ class HeizungssteuerungRaum extends IPSModule
 	
 	
 	public function VariabelStandartaktion(){
-		$this->EnableAction("SWS");
+		$this->EnableAction("SW_Anp");
 	}
 		
 	public function TrendDiagramm(){
