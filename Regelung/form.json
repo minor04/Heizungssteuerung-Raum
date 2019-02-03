@@ -13,7 +13,7 @@
 	[
 
 		{ "type": "Button", "label": "Trend", "onClick": "MIN_TrendDiagramm($id);" },
-		{ "type": "Button", "label": "Test", "onClick": "MIN_Test($id);" },
+		{ "type": "Button", "label": "Test", "onClick": "MIN_Test($id);" }
 		
-	],
+	]
 }
