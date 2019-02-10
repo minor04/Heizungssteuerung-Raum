@@ -109,7 +109,10 @@ class HeizungssteuerungRaum extends IPSModule
 			SetValue($this->ReadPropertyInteger("SW_An"), 18);
 			if((18 + $Histerese_aus) <= $rt){
 				SetValue($this->GetIDForIdent("Ventil"), false);
-				SetValue($this->ReadPropertyInteger("V_An_01"), false);
+				
+				if (IPS_VariableExists($this->ReadPropertyInteger("V_An_01"))) {
+					SetValue($this->ReadPropertyInteger("V_An_01"), true);
+				}				
 				if (IPS_VariableExists($this->ReadPropertyInteger("V_An_02"))) {
 					SetValue($this->ReadPropertyInteger("V_An_02"), false);
 				}
@@ -119,7 +122,10 @@ class HeizungssteuerungRaum extends IPSModule
 			}
 			else if((18 + $Histerese_ein) >= $rt){
 				SetValue($this->GetIDForIdent("Ventil"), true);
-				SetValue($this->ReadPropertyInteger("V_An_01"), true);
+				
+				if (IPS_VariableExists($this->ReadPropertyInteger("V_An_01"))) {
+					SetValue($this->ReadPropertyInteger("V_An_01"), true);
+				}
 				if (IPS_VariableExists($this->ReadPropertyInteger("V_An_02"))) {
 					SetValue($this->ReadPropertyInteger("V_An_02"), true);
 				}
@@ -137,7 +143,10 @@ class HeizungssteuerungRaum extends IPSModule
 			
 	    		if($programm <= 3 and (($sw_regler + $sw_ra_anp + $Histerese_aus) <= $rt)){
 		    		SetValue($this->GetIDForIdent("Ventil"), false);
-				SetValue($this->ReadPropertyInteger("V_An_01"), false);
+				
+				if (IPS_VariableExists($this->ReadPropertyInteger("V_An_01"))) {
+					SetValue($this->ReadPropertyInteger("V_An_01"), true);
+				}
 				if (IPS_VariableExists($this->ReadPropertyInteger("V_An_02"))) {
 					SetValue($this->ReadPropertyInteger("V_An_02"), false);
 				}
@@ -148,7 +157,10 @@ class HeizungssteuerungRaum extends IPSModule
 		
         		else if(($sw_regler + $sw_ra_anp + $Histerese_ein) >= $rt){
 				SetValue($this->GetIDForIdent("Ventil"), true);
-				SetValue($this->ReadPropertyInteger("V_An_01"), true);
+				
+				if (IPS_VariableExists($this->ReadPropertyInteger("V_An_01"))) {
+					SetValue($this->ReadPropertyInteger("V_An_01"), true);
+				}
 				if (IPS_VariableExists($this->ReadPropertyInteger("V_An_02"))) {
 					SetValue($this->ReadPropertyInteger("V_An_02"), true);
 				}
