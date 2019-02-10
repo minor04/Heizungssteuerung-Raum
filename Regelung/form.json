@@ -6,7 +6,7 @@
 		{ "type": "Label", "label": "Ventilantrieb (mind eine Variable muss gesetzt sein)" },
 		{ "type": "SelectVariable", "name": "V_An_01", "caption": "Ventil 01" },
 		{ "type": "SelectVariable", "name": "V_An_02", "caption": "Ventil 02" },
-		{ "type": "SelectVariable", "name": "V_An_03", "caption": "Ventil 03" }
+		{ "type": "SelectVariable", "name": "V_An_03", "caption": "Ventil 03" },
 		{ "type": "SelectVariable", "name": "SW_An", "caption": "Stellantrieb Sollwert" }
 		
 	],
