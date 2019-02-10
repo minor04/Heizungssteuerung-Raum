@@ -7,8 +7,8 @@
 		{ "type": "SelectVariable", "name": "V_An_01", "caption": "Ventil 01" },
 		{ "type": "SelectVariable", "name": "V_An_02", "caption": "Ventil 02" },
 		{ "type": "SelectVariable", "name": "V_An_03", "caption": "Ventil 03" },
-		{ "type": "SelectInstance", "name": "SW_An", "caption": "Stellantrieb Sollwert" }
-		{ "type": "CheckBox", "name": "AktivierungRT", "caption": "Ist eine Raumtemperatur vorhanden" }
+		{ "type": "SelectInstance", "name": "SW_An", "caption": "Stellantrieb Sollwert" },
+		{ "type": "CheckBox", "name": "AktivierungRT", "caption": "Ist eine Raumtemperatur vorhanden" },
 		{ "type": "CheckBox", "name": "AktivierungVentil", "caption": "Wird ein Ventil angesteuert" }
 		
 	],
