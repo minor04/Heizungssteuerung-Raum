@@ -21,6 +21,9 @@ class HeizungssteuerungRaum extends IPSModule
 			$this->RegisterPropertyInteger("TrigSollwert", 0);
 			$this->RegisterPropertyInteger("TrigRaumtemp", 0);
 			
+			$this->RegisterPropertyBoolean("AktivierungRT", true);
+			$this->RegisterPropertyBoolean("AktivierungVentil", true);
+			
 			$this->RegisterPropertyInteger("V_An_01", true);
 			$this->RegisterPropertyInteger("V_An_02", true);
 			$this->RegisterPropertyInteger("V_An_03", true);
@@ -82,6 +85,20 @@ class HeizungssteuerungRaum extends IPSModule
 	
 	public function VariabelStandartaktion(){
 		$this->EnableAction("SW_Anp");
+		
+		if ($this->ReadPropertyBoolean("AktivierungRT")){
+			IPS_SetHidden($this->GetIDForIdent("RT"), false);
+		}
+		else{
+			IPS_SetHidden($this->GetIDForIdent("RT"), true);
+		}
+		
+		if ($this->ReadPropertyBoolean("AktivierungVentil")){
+			IPS_SetHidden($this->GetIDForIdent("Ventil"), false);
+		}
+		else{
+			IPS_SetHidden($this->GetIDForIdent("Ventil"), true);
+		}
 	}
 		
 	public function TrendDiagramm(){
