@@ -106,7 +106,10 @@ class HeizungssteuerungRaum extends IPSModule
 
 		if($programm == 3){
 			SetValue($this->GetIDForIdent("SW_Ra"), 18);													// Raumsollwert für Anzeige
-			SetValue($this->ReadPropertyInteger("SW_An"), 18);
+			
+			if (IPS_VariableExists($this->ReadPropertyInteger("SW_An"))) {
+				ZW_ThermostatSetPointSet($this->ReadPropertyInteger("SW_An"), 1, 18);
+			}
 			if((18 + $Histerese_aus) <= $rt){
 				SetValue($this->GetIDForIdent("Ventil"), false);
 				
@@ -141,7 +144,9 @@ class HeizungssteuerungRaum extends IPSModule
         	SetValue($this->GetIDForIdent("SW_Ra"), ($sw_regler + $sw_ra_anp));					// Raumsollwert für Anzeige
 		//SetValue($this->ReadPropertyInteger("SW_An"), ($sw_regler + $sw_ra_anp));
 		//ZW_ThermostatSetPointSet("SW_An", 1, 20);
-		ZW_ThermostatSetPointSet($this->ReadPropertyInteger("SW_An"), 1, 20);
+		if (IPS_VariableExists($this->ReadPropertyInteger("SW_An"))) {
+			ZW_ThermostatSetPointSet($this->ReadPropertyInteger("SW_An"), 1, ($sw_regler + $sw_ra_anp));
+		}
 			
 	    		if($programm <= 3 and (($sw_regler + $sw_ra_anp + $Histerese_aus) <= $rt)){
 		    		SetValue($this->GetIDForIdent("Ventil"), false);
