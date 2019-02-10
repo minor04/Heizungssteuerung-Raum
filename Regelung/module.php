@@ -24,6 +24,7 @@ class HeizungssteuerungRaum extends IPSModule
 			$this->RegisterPropertyInteger("V_An_01", true);
 			$this->RegisterPropertyInteger("V_An_02", true);
 			$this->RegisterPropertyInteger("V_An_03", true);
+			$this->RegisterPropertyInteger("SW_An", true);
 		}
 	
 	        public function ApplyChanges() {
@@ -105,6 +106,7 @@ class HeizungssteuerungRaum extends IPSModule
 
 		if($programm == 3){
 			SetValue($this->GetIDForIdent("SW_Ra"), 18);													// Raumsollwert für Anzeige
+			SetValue($this->ReadPropertyInteger("SW_An"), 18);
 			if((18 + $Histerese_aus) <= $rt){
 				SetValue($this->GetIDForIdent("Ventil"), false);
 				SetValue($this->ReadPropertyInteger("V_An_01"), false);
@@ -131,6 +133,7 @@ class HeizungssteuerungRaum extends IPSModule
 
 		else{
         	SetValue($this->GetIDForIdent("SW_Ra"), ($sw_regler + $sw_ra_anp));					// Raumsollwert für Anzeige
+		SetValue($this->ReadPropertyInteger("SW_An"), ($sw_regler + $sw_ra_anp));
 			
 	    		if($programm <= 3 and (($sw_regler + $sw_ra_anp + $Histerese_aus) <= $rt)){
 		    		SetValue($this->GetIDForIdent("Ventil"), false);
