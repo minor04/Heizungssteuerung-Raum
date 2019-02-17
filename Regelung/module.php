@@ -131,7 +131,7 @@ class HeizungssteuerungRaum extends IPSModule
 				SetValue($this->GetIDForIdent("Ventil"), false);
 				
 				if (IPS_VariableExists($this->ReadPropertyInteger("V_An_01"))) {
-					SetValue($this->ReadPropertyInteger("V_An_01"), true);
+					SetValue($this->ReadPropertyInteger("V_An_01"), false);
 				}				
 				if (IPS_VariableExists($this->ReadPropertyInteger("V_An_02"))) {
 					SetValue($this->ReadPropertyInteger("V_An_02"), false);
@@ -169,7 +169,7 @@ class HeizungssteuerungRaum extends IPSModule
 		    		SetValue($this->GetIDForIdent("Ventil"), false);
 				
 				if (IPS_VariableExists($this->ReadPropertyInteger("V_An_01"))) {
-					SetValue($this->ReadPropertyInteger("V_An_01"), true);
+					SetValue($this->ReadPropertyInteger("V_An_01"), false);
 				}
 				if (IPS_VariableExists($this->ReadPropertyInteger("V_An_02"))) {
 					SetValue($this->ReadPropertyInteger("V_An_02"), false);
@@ -200,8 +200,6 @@ class HeizungssteuerungRaum extends IPSModule
 	
 		
 	public function Test(){
- 
-		
 		//$KategorieID_Heizung = IPS_GetCategoryIDByName("Heizung", 0);
 		//$KategorieID_Settings = IPS_GetCategoryIDByName("Einstellungen", $KategorieID_Heizung);
 		//$InstanzID = IPS_GetInstanceIDByName("Regler", $KategorieID_Settings);
@@ -213,8 +211,6 @@ class HeizungssteuerungRaum extends IPSModule
 		//SetValue($this->GetIDForIdent("RT"), $Ist_RT);
 		
 		//$this->EnableAction("SW_Anp");
-		
-		
 	}
 	
     
